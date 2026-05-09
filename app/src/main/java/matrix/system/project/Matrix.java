@@ -4,10 +4,10 @@ import java.text.DecimalFormat;
 import java.util.Random;
 
 public class Matrix {
-    public int rows;
-    public int columns;
-    double[][]matrix;
-    int decimalMax;
+    private int rows;
+    private int columns;
+    private double[][]matrix;
+    private int decimalMax;
 
 
     public Matrix(int rows, int columns){
@@ -15,27 +15,10 @@ public class Matrix {
         this.columns = columns;
         this.matrix = new double[rows][columns];
         this.decimalMax = 0;
+
     }
 
-    public void fillRandomInt(int low,int high){
-        Random rng = new Random();
-        for(int i=0;i<matrix.length;i++){
-            for(int j=0;j<matrix[i].length;j++){
-                matrix[i][j] = rng.nextInt(low,high+1);
-            }
-        }
-    }
-
-    public void fillRandomDouble(int low,int high, int decimalMax){
-        if(decimalMax < 0){
-            System.out.println("Can't have a negative decimal");
-            return;
-        }
-        if(decimalMax == 0){
-            fillRandomInt(low,high);
-            this.decimalMax = 0;
-            return;
-        }
+    public void fillRandom(int low,int high, int decimalMax){
         this.decimalMax = decimalMax;
         DecimalFormat nf1 = new DecimalFormat();
         nf1.setMaximumFractionDigits(decimalMax);
@@ -48,12 +31,28 @@ public class Matrix {
     }
 
     public boolean isSquare(){
-        if(rows == columns){
-            return true;
-        } else if (rows != columns) {
-            return false;
-        }
-        return false;
+        return rows == columns;
+    }
+
+    public double getElement(int row, int col){
+        return matrix[row][col];
+    }
+
+    public void setElement(int row, int col, double value){
+        matrix[row][col] = value;
+    }
+
+    public void setDecimalMax(int newMax){
+        this.decimalMax = newMax;
+    }
+    public int getDecimalMax(){
+        return decimalMax;
+    }
+    public int getColumns(){
+        return columns;
+    }
+    public int getRows(){
+        return rows;
     }
 
     public String toString(){
@@ -65,10 +64,8 @@ public class Matrix {
             for(int j=0;j<matrix[i].length;j++){
                 if(matrix[i][j]%1 == 0){
                     sb.append((int)(matrix[i][j]));
-                } else if(decimalMax != 0){
-                    sb.append(dmf.format(matrix[i][j]));
                 } else {
-                    sb.append(matrix[i][j]);
+                    sb.append(dmf.format(matrix[i][j]));
                 }
                 if(j != matrix[i].length-1){
                     sb.append(", ");
