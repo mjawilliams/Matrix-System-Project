@@ -43,4 +43,21 @@ public class LinearOperations {
         
        return retMatrix;
     }
+
+    public Matrix multiplyMatrix(Matrix m1,Matrix m2){
+        if(m1.getColumns() != m2.getRows()){
+            System.out.println("These Matrices can't be multiplied");
+            return null;
+        }
+        Matrix retMatrix = new Matrix(m1.getRows(),m2.getColumns());
+        retMatrix.setDecimalMax(Math.max(m1.getDecimalMax(),m2.getDecimalMax()));
+        for(int i=0;i<retMatrix.getRows();i++){
+            for(int j=0;j<retMatrix.getColumns();j++){
+                for(int k=0;k<retMatrix.getColumns();k++){
+                retMatrix.setElement(i,j,retMatrix.getElement(i, j)+(m1.getElement(i,k)*m2.getElement(k, j)));
+                }
+            }
+        }
+        return retMatrix;
+    }
 }

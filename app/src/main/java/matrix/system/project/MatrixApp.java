@@ -3,7 +3,7 @@ package matrix.system.project;
 public class MatrixApp {
     public static void main(String[]args){
         LinearOperations linOp = new LinearOperations();
-        Matrix matrix1 = new Matrix(3,3);
+        /*Matrix matrix1 = new Matrix(3,3);
         matrix1.fillRandom(0,9,2);
         System.out.println(matrix1);
         Matrix matrix2 = new Matrix(3,3);
@@ -15,8 +15,15 @@ public class MatrixApp {
         System.out.println(matrix4);
         Matrix matrix5 = linOp.scaleMatrix(matrix1, 5);
         System.out.println(matrix5);
-
-
+        */
+        Matrix matrix2 = new Matrix(3,2);
+        matrix2.fillRandom(0, 10, 0);
+        Matrix matrix3 = new Matrix(2,2);  
+        matrix3.fillRandom(0, 10, 0); 
+        Matrix matrixResult = linOp.multiplyMatrix(matrix2, matrix3);
+        System.out.println(matrix2);
+        System.out.println(matrix3);
+        System.out.println(matrixResult);
 
 
 
