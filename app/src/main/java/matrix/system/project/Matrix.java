@@ -97,19 +97,10 @@ public class Matrix {
                 value = formatValue(matrix[k][j]);
                 if(value.length() > currentLongest){
                     currentLongest = value.length();
-                    }
-                /*if(matrix[k][j]%1 == 0){
-                    if((Integer.toString((int)matrix[k][j])).length() > currentLongest){
-                    currentLongest = (Integer.toString((int)matrix[k][j])).length();
-                    }
-                } else if((Double.toString(matrix[k][j])).length() > currentLongest){
-                    currentLongest = (Double.toString(matrix[k][j])).length();
                 }
-                    */
-                
             }
-        retArr[j] = currentLongest;
-        currentLongest = 0;
+            retArr[j] = currentLongest;
+            currentLongest = 0;
         }
         return retArr;
     }
