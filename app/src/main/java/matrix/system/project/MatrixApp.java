@@ -16,10 +16,10 @@ public class MatrixApp {
         Matrix matrix5 = linOp.scaleMatrix(matrix1, 5);
         System.out.println(matrix5);
         */
-        Matrix matrix2 = new Matrix(3,2);
-        matrix2.fillRandom(0, 10, 0);
-        Matrix matrix3 = new Matrix(2,2);  
-        matrix3.fillRandom(0, 10, 0); 
+        Matrix matrix2 = new Matrix(5,3);
+        matrix2.fillRandom(0, 100, 0);
+        Matrix matrix3 = new Matrix(3,3);  
+        matrix3.fillRandom(0, 100, 0); 
         Matrix matrixResult = linOp.multiplyMatrix(matrix2, matrix3);
         System.out.println(matrix2);
         System.out.println(matrix3);

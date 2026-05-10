@@ -8,7 +8,7 @@ public class Matrix {
     private int columns;
     private double[][]matrix;
     private int decimalMax;
-
+    private DecimalFormat dmf = new DecimalFormat();
 
     public Matrix(int rows, int columns){
         this.rows = rows;
@@ -57,15 +57,27 @@ public class Matrix {
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        DecimalFormat dmf = new DecimalFormat();
         dmf.setMaximumFractionDigits(decimalMax);
+        int[]widths = columnWidths();
+        String nextAdd;
+        int diff;
         for(int i=0;i<matrix.length;i++){
             sb.append("(");
             for(int j=0;j<matrix[i].length;j++){
-                if(matrix[i][j]%1 == 0){
-                    sb.append((int)(matrix[i][j]));
+                nextAdd = formatValue(matrix[i][j]);
+                diff = widths[j] - nextAdd.length();
+                if(diff % 2 != 0){
+                    for(int l=0;l<(diff+1)/2;l++){
+                    sb.append(" ");
+                    }
                 } else {
-                    sb.append(dmf.format(matrix[i][j]));
+                    for(int l=0;l<diff/2;l++){
+                    sb.append(" ");
+                    }
+                }
+                sb.append(nextAdd);
+                for(int l=0;l<diff/2;l++){
+                sb.append(" ");
                 }
                 if(j != matrix[i].length-1){
                     sb.append(", ");
@@ -75,6 +87,42 @@ public class Matrix {
         }
         return sb.toString();
     }
+
+    public int[] columnWidths(){
+        int[] retArr = new int[columns];
+        int currentLongest = 0;
+        String value;
+        for(int j=0;j<columns;j++){
+            for(int k=0;k<rows;k++){
+                value = formatValue(matrix[k][j]);
+                if(value.length() > currentLongest){
+                    currentLongest = value.length();
+                    }
+                /*if(matrix[k][j]%1 == 0){
+                    if((Integer.toString((int)matrix[k][j])).length() > currentLongest){
+                    currentLongest = (Integer.toString((int)matrix[k][j])).length();
+                    }
+                } else if((Double.toString(matrix[k][j])).length() > currentLongest){
+                    currentLongest = (Double.toString(matrix[k][j])).length();
+                }
+                    */
+                
+            }
+        retArr[j] = currentLongest;
+        currentLongest = 0;
+        }
+        return retArr;
+    }
+
+    public String formatValue(double n){
+        dmf.setMaximumFractionDigits(decimalMax);
+        if(n % 1 == 0){
+            return Integer.toString((int)(n));
+        } else {
+            return dmf.format(n);
+        }
+    }
+
 }
 
 
