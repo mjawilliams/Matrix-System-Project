@@ -1,12 +1,23 @@
 package matrix.system.project;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MatrixOperations {
     private Map<Matrix,Double> map = new HashMap<>();
 
+    // Return a Transposed Matrix of the input Matrix
+    public Matrix transpose(Matrix m){
+        Matrix retMat = new Matrix(m.getColumns(),m.getRows());
+        for(int i=0;i<m.getRows();i++){
+            for(int j=0;j<m.getColumns();j++){
+                retMat.setElement(j,i,m.getElement(i,j));
+            }
+        }
+        return retMat;
+    }
+
+    // Returns the Determinant a Matrix
     public double getDeterminant(Matrix m){
         double retNum = 0;
         if(!(m.isSquare())){
@@ -98,4 +109,5 @@ public class MatrixOperations {
         }
         return retMatrix;
     }
+
 }

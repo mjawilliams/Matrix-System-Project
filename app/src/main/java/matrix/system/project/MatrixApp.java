@@ -32,7 +32,7 @@ public class MatrixApp {
         Matrix matrix4 = new Matrix(fillArr); 
         System.out.println(matrix4);
         //System.out.println(matOp.getDeterminant(matrix3));
-        Matrix matrix2 = matrix4.transpose();
+        Matrix matrix2 = matOp.transpose(matrix4);
         System.out.println(matrix2);
     }
 }

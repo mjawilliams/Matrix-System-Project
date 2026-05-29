@@ -37,7 +37,7 @@ public class Matrix {
     public void fill(String s){
         for(int i=0;i<matrix.length;i++){
             for(int j=0;j<matrix[i].length;j++){
-
+                // FINISH THIS
             }
         }
     }
@@ -62,7 +62,7 @@ public class Matrix {
     }
 
     // Returns a new Matrix with the Element change
-    public Matrix setElement(int row, int col, double value){
+    /*public Matrix setElement(int row, int col, double value){
         Matrix retMatrix = new Matrix(rows,columns);
         for(int i=0;i<rows;i++){
             for(int j=0;j<columns;j++){
@@ -71,6 +71,11 @@ public class Matrix {
         }
         retMatrix.matrix[row][col] = value;
         return retMatrix;
+    }*/
+
+    // Change an Element in the Matrix
+    public void setElement(int row, int col, double value){
+        matrix[row][col] = value;
     }
 
     // Set the Decimal Max for formatting
@@ -85,16 +90,6 @@ public class Matrix {
     }
     public int getRows(){
         return rows;
-    }
-    // Return the Transposed Matrix
-    public Matrix transpose(){
-        Matrix retMat = new Matrix(columns,rows);
-        for(int i=0;i<matrix.length;i++){
-            for(int j=0;j<matrix[i].length;j++){
-                retMat = retMat.setElement(j,i,matrix[i][j]);
-            }
-        }
-        return retMat;
     }
 
     public String toString(){
