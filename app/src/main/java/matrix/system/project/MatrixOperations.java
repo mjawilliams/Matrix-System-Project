@@ -1,8 +1,12 @@
 package matrix.system.project;
 
-import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MatrixOperations {
+    private Map<Matrix,Double> map = new HashMap<>();
+
     public double getDeterminant(Matrix m){
         double retNum = 0;
         if(!(m.isSquare())){
@@ -16,7 +20,7 @@ public class MatrixOperations {
             retNum = determinant3x3(m);
         }
         if(m.getRows() > 3){
-            retNum = determinantAny(m);
+            retNum = determinantRec(m);
         }
         return retNum;
     }
@@ -45,7 +49,7 @@ public class MatrixOperations {
         return retNum;
     }
 
-    private double determinantAny(Matrix m){
+    private double determinantRec(Matrix m){
         double total = 0;
         if(m.getRows() == 2){
             return determinant2x2(m);
@@ -54,7 +58,29 @@ public class MatrixOperations {
             return determinant3x3(m);
         }
         for(int i=0;i<m.getColumns();i++){
-            total += (Math.pow(-1,i+2))*m.getElement(0,i) * determinantAny(subMatrix(m,i));
+            total += (Math.pow(-1,i+2))*m.getElement(0,i) * determinantRec(subMatrix(m,i));
+        }
+        return total;
+    }
+
+    private double determinantMemo(Matrix m){
+        double total = 0;
+        double nextDet = 0;
+        if(m.getRows() == 2){
+            return determinant2x2(m);
+        }
+        if(m.getRows() == 3){
+            return determinant3x3(m);
+        }
+        for(int i=0;i<m.getColumns();i++){
+            if(map.containsKey(m)){
+                total += (Math.pow(-1,i+2))*m.getElement(0,i) * map.get(m);
+            } else {
+                nextDet = determinantMemo(subMatrix(m,i));
+                Matrix sub = subMatrix(m, i);
+                total += (Math.pow(-1,i+2))*m.getElement(0,i) * nextDet;
+                map.put(sub,nextDet);
+            }
         }
         return total;
     }
