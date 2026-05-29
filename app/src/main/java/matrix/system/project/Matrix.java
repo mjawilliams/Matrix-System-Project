@@ -2,22 +2,20 @@ package matrix.system.project;
 
 import java.text.DecimalFormat;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Matrix {
     private int rows;
     private int columns;
     private double[][]matrix;
-    private int decimalMax;
+    private int decimalMax = 2;
     private DecimalFormat dmf = new DecimalFormat();
 
     // Initialise an empty Matrix
     public Matrix(int rows, int columns){
-        this.decimalMax = 2;
         this.rows = rows;
         this.columns = columns;
         this.matrix = new double[rows][columns];
-        this.decimalMax = 0;
-
     }
 
     // Initialise and fill a Matrix with an Array
@@ -33,11 +31,16 @@ public class Matrix {
         matrix = arr;
     }
 
-    // Fill a Matrix by a string after being initialised
+    // Fill a Matrix by a string after being initialised (Sets size)
+    // String must be structured: "2,3,4,5" any excess numbers past the size are discarded
     public void fill(String s){
+        Scanner sc = new Scanner(s);
+        sc.useDelimiter(",");
         for(int i=0;i<matrix.length;i++){
             for(int j=0;j<matrix[i].length;j++){
-                // FINISH THIS
+                if(sc.hasNext()){
+                matrix[i][j] = sc.nextDouble();
+                }
             }
         }
     }
@@ -138,7 +141,7 @@ public class Matrix {
     // Formats Non-Decimal Doubles into Ints
     private String formatValue(double n){
         dmf.setMaximumFractionDigits(decimalMax);
-        if(n % 1 == 0 && n != 0){
+        if(n % 1 == 0){
             return Integer.toString((int)(n));
         } else {
             return dmf.format(n);

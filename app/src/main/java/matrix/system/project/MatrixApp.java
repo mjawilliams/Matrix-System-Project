@@ -28,11 +28,14 @@ public class MatrixApp {
         */
         //Matrix matrix3 = new Matrix(3,3);  
         //matrix3.fillRandom(100, 10);
-        double[][]fillArr = {{1000,30,90000},{40,500,3},{6,9,2}};
+        double[][]fillArr = {{1,3,9.55},{4,5,3},{6,9,2}};
         Matrix matrix4 = new Matrix(fillArr); 
         System.out.println(matrix4);
         //System.out.println(matOp.getDeterminant(matrix3));
-        Matrix matrix2 = matOp.transpose(matrix4);
-        System.out.println(matrix2);
+        //Matrix matrix2 = matOp.transpose(matrix4);
+        //System.out.println(matrix2);
+        Matrix matrixString = new Matrix(2,2);
+        matrixString.fill("2,3.2,4.55");
+        System.out.println(matrixString);
     }
 }
