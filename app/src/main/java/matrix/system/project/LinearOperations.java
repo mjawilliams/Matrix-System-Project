@@ -2,7 +2,7 @@ package matrix.system.project;
 
 public class LinearOperations {
 
-    public Matrix addMatricies(Matrix m1, Matrix m2){
+    public Matrix addMatrices(Matrix m1, Matrix m2){
         if(m1.getColumns() != m2.getColumns() || m1.getRows() != m2.getRows()){
             System.out.println("These 2 Matrices can't be added together");
             return null;
@@ -17,7 +17,7 @@ public class LinearOperations {
         return retMatrix;
     }
 
-    public Matrix subtractMatricies(Matrix m1, Matrix m2){
+    public Matrix subtractMatrices(Matrix m1, Matrix m2){
         if(m1.getColumns() != m2.getColumns() || m1.getRows() != m2.getRows()){
             System.out.println("These 2 Matrices can't be subtracted from each other");
             return null;
@@ -44,7 +44,7 @@ public class LinearOperations {
        return retMatrix;
     }
 
-    public Matrix multiplyMatrix(Matrix m1,Matrix m2){
+    public Matrix multiplyMatrices(Matrix m1,Matrix m2){
         if(m1.getColumns() != m2.getRows()){
             System.out.println("These Matrices can't be multiplied");
             return null;

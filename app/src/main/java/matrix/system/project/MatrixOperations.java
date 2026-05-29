@@ -76,8 +76,8 @@ public class MatrixOperations {
             if(map.containsKey(m)){
                 total += (Math.pow(-1,i+2))*m.getElement(0,i) * map.get(m);
             } else {
-                nextDet = determinantMemo(subMatrix(m,i));
                 Matrix sub = subMatrix(m, i);
+                nextDet = determinantMemo(sub);
                 total += (Math.pow(-1,i+2))*m.getElement(0,i) * nextDet;
                 map.put(sub,nextDet);
             }
